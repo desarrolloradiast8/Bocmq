@@ -1,0 +1,10 @@
+Fix needed: Remove lines 384-390 from Homepage.tsx
+
+Lines to remove:
+  if (currentScreen === "export-help") {
+    return (
+      <ExportHelpScreen
+        onBack={handleBackToMenu}
+      />
+    );
+  }
