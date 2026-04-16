@@ -1,24 +1,24 @@
 import { useState, useEffect } from 'react';
-import image1 from 'figma:asset/f9399da976451fbe2e6e1e133cf053fec1781bbf.png';
-import image2 from 'figma:asset/0bbfb0513a3a014c4bb5ee8a4d65456aebd067d3.png';
-import image3 from 'figma:asset/c953949fdf9728a54e0a8ce7ba2bdefcdf593d64.png';
+import banner1 from '@/assets/banner-1.png';
+import banner2 from '@/assets/banner-2.png';
+import banner3 from '@/assets/banner-3.png';
 
 const carouselImages = [
   { 
     id: 1, 
-    src: image1, 
+    src: banner1, 
     alt: 'Genera clientes',
     title: 'Genera clientes tanto a tu negocio físico como a tu negocio digital',
   },
   { 
     id: 2, 
-    src: image2, 
+    src: banner2, 
     alt: 'Vende sin comisiones',
     title: 'Vende sin pagar comisiones',
   },
   { 
     id: 3, 
-    src: image3, 
+    src: banner3, 
     alt: 'Sucursales digitales',
     title: 'Abre sucursales digitales en las diversas categorías',
   },

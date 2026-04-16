@@ -3,7 +3,7 @@ import { ArrowLeft, Facebook } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 import Swal from "sweetalert2";
-import logoImage from "figma:asset/5bd1390b600814efd35c7824f6d4aa947cc9bd64.png";
+import logoImage from "@/assets/LogoBOC-color.png";
 import FacebookLogin from "@greatsumini/react-facebook-login";
 
 const API_URL = `${import.meta.env.VITE_API_URL}/api/login`;
@@ -135,7 +135,7 @@ export function Login({ onLogin, onBack, initialMode = "login" }: LoginProps) {
             <img
               src={logoImage}
               alt="Bolivia en un clic"
-              className="w-32 h-32 mb-6 animate-pulse"
+              className="w-32 h-32 mb-6 animate-pulse rounded-2xl object-cover"
             />
             <h1 className="text-5xl font-bold bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent mb-4">
               Bolivia en un clic
@@ -152,7 +152,7 @@ export function Login({ onLogin, onBack, initialMode = "login" }: LoginProps) {
               <img
                 src={logoImage}
                 alt="Bolivia en un clic"
-                className="w-20 h-20 mx-auto mb-4"
+                className="w-20 h-20 mx-auto mb-4 rounded-2xl object-cover"
               />
               <h2 className="text-3xl font-bold bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent mb-2">
                 Bolivia en un clic
@@ -229,7 +229,7 @@ export function Login({ onLogin, onBack, initialMode = "login" }: LoginProps) {
             <img
               src={logoImage}
               alt="Bolivia en un clic"
-              className="w-32 h-32 mb-6 animate-pulse"
+              className="w-32 h-32 mb-6 animate-pulse rounded-2xl object-cover"
             />
             <h1 className="text-5xl font-bold bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent mb-4">
               Bolivia en un clic
@@ -246,7 +246,7 @@ export function Login({ onLogin, onBack, initialMode = "login" }: LoginProps) {
               <img
                 src={logoImage}
                 alt="Bolivia en un clic"
-                className="w-20 h-20 mx-auto mb-4"
+                className="w-20 h-20 mx-auto mb-4 rounded-2xl object-cover"
               />
               <h2 className="text-3xl font-bold bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent mb-2">
                 Bolivia en un clic
@@ -415,7 +415,7 @@ export function Login({ onLogin, onBack, initialMode = "login" }: LoginProps) {
           <img
             src={logoImage}
             alt="Bolivia en un clic"
-            className="w-32 h-32 mb-6 animate-pulse"
+              className="w-32 h-32 mb-6 animate-pulse rounded-2xl object-cover"
           />
           <h1 className="text-5xl font-bold bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent mb-4">
             Bolivia en un clic
@@ -432,7 +432,7 @@ export function Login({ onLogin, onBack, initialMode = "login" }: LoginProps) {
             <img
               src={logoImage}
               alt="Bolivia en un clic"
-              className="w-20 h-20 mx-auto mb-4"
+                className="w-20 h-20 mx-auto mb-4 rounded-2xl object-cover"
             />
             <h2 className="text-3xl font-bold bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent mb-2">
               Bolivia en un clic

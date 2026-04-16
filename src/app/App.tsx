@@ -41,7 +41,10 @@ function LoginPageWrapper({ mode, onBackToLanding }: { mode: "login" | "register
   return (
     <Login 
       initialMode={mode} 
-      onBack={onBackToLanding} 
+      onBack={() => {
+        onBackToLanding();
+        navigate("/");
+      }} 
       onLogin={() => {
         if (mode === "register") {
           navigate("/select-interests");
@@ -124,7 +127,7 @@ export default function App() {
             element={
               <LoginPageWrapper 
                 mode="login" 
-                onBackToLanding={() => { handleResetNavigation(); }} 
+                onBackToLanding={handleResetNavigation} 
               />
             } 
           />
@@ -133,7 +136,7 @@ export default function App() {
             element={
               <LoginPageWrapper 
                 mode="register" 
-                onBackToLanding={() => { handleResetNavigation(); }} 
+                onBackToLanding={handleResetNavigation} 
               />
             } 
           />
