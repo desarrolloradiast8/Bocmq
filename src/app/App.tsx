@@ -95,7 +95,7 @@ export default function App() {
   const [selectedCity, setSelectedCity] = useState<string>("");
   const [pendingAction, setPendingAction] = useState<string>("");
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
-
+  const baseName = import.meta.env.BASE_URL;
   // Función para resetear estados al volver al inicio
   const handleResetNavigation = () => {
     setSelectedCity("");
@@ -105,7 +105,7 @@ export default function App() {
 
   return (
     <FavoritesProvider>
-      <Router>
+      <Router basename={baseName}>
         <Routes>
           {/* Ruta Inicial: Landing Page */}
           <Route 
