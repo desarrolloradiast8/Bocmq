@@ -1,0 +1,36 @@
+# Dependencias (la carpeta más pesada)
+node_modules/
+.pnpm-store/
+
+# Carpeta de build (archivos generados para producción)
+dist/
+dist-ssr/
+*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Entorno / Secretos (Variables de configuración)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Editor / IDE (Configuraciones de VS Code o Windsurf)
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Archivos temporales o de sistema
+DS_Store
+thumbs.db
+temp-fix.txt

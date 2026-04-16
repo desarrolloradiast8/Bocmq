@@ -5,15 +5,21 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [
-    // The React and Tailwind plugins are both required for Make, even if
-    // Tailwind is not being actively used – do not remove them
     react(),
     tailwindcss(),
   ],
   resolve: {
-    alias: {
-      // Alias @ to the src directory
-      '@': path.resolve(__dirname, './src'),
-    },
+    alias: [
+      {
+        // Esto busca cualquier cosa que empiece con figma:asset/ y termine en .png
+        find: /^figma:asset\/.*\.png$/,
+        // Y lo reemplaza TODO por la ruta de tu único archivo jpeg
+        replacement: path.resolve(__dirname, './src/assets/placeholder.jpeg')
+      },
+      {
+        find: '@',
+        replacement: path.resolve(__dirname, './src')
+      }
+    ],
   },
 })
