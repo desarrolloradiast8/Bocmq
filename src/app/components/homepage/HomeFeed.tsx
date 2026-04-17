@@ -9,7 +9,7 @@ const HomeFeed = () => {
   const [pagination, setPagination] = useState<any>(null);
   const [showLimitDropdown, setShowLimitDropdown] = useState(false);
 
-  const API_URL = "http://172.234.12.14";
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const fetchPosts = async (page: number, currentLimit: number) => {
     try {
