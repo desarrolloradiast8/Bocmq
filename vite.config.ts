@@ -8,7 +8,7 @@ export default defineConfig(({ command }) => {
   return {
     // Si ejecutas 'npm run build' usará /boc/
     // Si ejecutas 'npm run dev' usará /
-    base: command === 'build' ? '/boc/' : '/',
+    base: '/',
     
     plugins: [
       react(),
