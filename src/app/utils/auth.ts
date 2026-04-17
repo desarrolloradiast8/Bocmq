@@ -67,52 +67,54 @@ export const loginSocial = async (email: string, provider: string, userId: strin
         throw new Error("Error en la autenticación social");
     }
 
-    return resp.data.access; 
+    return resp.data.access;
 };
 export const registerUser = async (email: string, full_name: string, password: string) => {
-  const payload = new URLSearchParams();
-  payload.append("email", email);
-  payload.append("full_name", full_name);
-  payload.append("password", password);
+    const payload = new URLSearchParams();
+    payload.append("email", email);
+    payload.append("full_name", full_name);
+    payload.append("password", password);
 
-  const response = await fetch(`${API_URL}/register`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-      "Accept": "application/json",
-    },
-    body: payload,
-  });
+    const response = await fetch(`${API_URL}/register`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Accept": "application/json",
+        },
+        body: payload,
+    });
 
-  const resp = await response.json();
+    const resp = await response.json();
 
-  if (!response.ok || !resp.data?.access) {
-    throw new Error(resp.message || "Error en el registro");
-  }
+    if (!response.ok || !resp.data?.access) {
+        throw new Error(resp.message || "Error en el registro");
+    }
 
-  return resp.data.access; // Retornamos el token
+    return resp.data.access; // Retornamos el token
 };
 
 // Registro Social (Facebook/Google)
-export const registerSocial = async (full_name: string, provider_user_id: string, provider: string) => {
-  const payload = new URLSearchParams();
-  payload.append("full_name", full_name);
-  payload.append("provider_user_id", provider_user_id);
-  payload.append("provider", provider);
+export const registerSocial = async (full_name: string, userId: string, provider: string) => {
+    const payload = new URLSearchParams();
+    payload.append("full_name", full_name);
+    payload.append("provider_user_id", userId);
+    payload.append("provider", provider);
 
-  const response = await fetch(`${API_URL}/social_register`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: payload,
-  });
+    const response = await fetch(`${API_URL}/social_register`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Accept": "application/json", // Crucial para evitar redirecciones
+        },
+        body: payload,
+    });
 
-  const resp = await response.json();
+    const resp = await response.json();
 
-  if (!response.ok || !resp.data?.access) {
-    throw new Error(resp.message || "Error en el registro social");
-  }
+    if (!response.ok) {
+        throw new Error(resp.message || "Error al registrar cuenta social");
+    }
 
-  return resp.data.access;
+    // Retornamos el token (ajusta la ruta según tu JSON: resp.data.access)
+    return resp.data?.access || resp.access;
 };

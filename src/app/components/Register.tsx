@@ -1,10 +1,11 @@
-// src/app/Register.tsx
 import { useState } from "react";
-import { ArrowLeft, Facebook } from "lucide-react"; 
+import { ArrowLeft, Facebook } from "lucide-react";
 import { Input } from "@/app/components/ui/input";
 import { Button } from "@/app/components/ui/button";
 import { registerUser } from "@/app/utils/auth";
 import Swal from "sweetalert2";
+import { registerSocial } from "@/app/utils/auth"; // Importa la función correcta
+import FacebookLogin from "@greatsumini/react-facebook-login";
 
 interface RegisterProps {
   onBack?: () => void;
@@ -13,7 +14,12 @@ interface RegisterProps {
   onComplete: () => void; // <--- AGREGADO: Esto evita errores de TypeScript
 }
 
-export function Register({ onBack, onSwitchToLogin, logoImage, onComplete }: RegisterProps) {
+export function Register({
+  onBack,
+  onSwitchToLogin,
+  logoImage,
+  onComplete,
+}: RegisterProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -48,24 +54,62 @@ export function Register({ onBack, onSwitchToLogin, logoImage, onComplete }: Reg
         text: "Tu cuenta ha sido creada con éxito.",
         icon: "success",
         timer: 1500,
-        showConfirmButton: false
+        showConfirmButton: false,
       });
 
       // 4. Ejecutamos la navegación automática
-      onComplete(); 
-
+      onComplete();
     } catch (error: any) {
-      Swal.fire("Error", error.message || "No se pudo crear la cuenta", "error");
+      Swal.fire(
+        "Error",
+        error.message || "No se pudo crear la cuenta",
+        "error",
+      );
     } finally {
       setLoading(false);
     }
   };
 
-  const handleFacebookLogin = async () => {
-    // Aquí iría tu lógica de login social
-    Swal.fire("Próximamente", "El registro con Facebook estará disponible pronto", "info");
-  };
+  const handleFacebookRegister = async (response: any) => {
+    if (!response.id) return; // Si no hay ID de Facebook, cancelamos
 
+    setLoading(true);
+    try {
+      // Llamamos al endpoint de registro social
+      // Facebook devuelve el nombre en 'response.name'
+      const token = await registerSocial(
+        response.name,
+        response.id,
+        "facebook",
+      );
+
+      // Guardamos el token que nos devuelve el registro exitoso
+      localStorage.setItem("token", token);
+
+      await Swal.fire({
+        title: "¡Bienvenido!",
+        text: `Cuenta creada exitosamente con Facebook`,
+        icon: "success",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+
+      // Navegamos al Home
+      onComplete();
+    } catch (error: any) {
+      console.error("Error en FB Register:", error);
+
+      // Si el error es que ya existe (ej: 400 o 422), podrías intentar loginSocial
+      Swal.fire({
+        title: "Aviso",
+        text: "Parece que ya tienes una cuenta. Intenta iniciar sesión.",
+        icon: "info",
+        confirmButtonColor: "#FB9E23",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="min-h-screen bg-white flex items-center justify-center px-4 py-8">
       {onBack && (
@@ -98,7 +142,11 @@ export function Register({ onBack, onSwitchToLogin, logoImage, onComplete }: Reg
         {/* LADO DERECHO - Formulario */}
         <div className="w-full max-w-md mx-auto lg:mx-0">
           <div className="lg:hidden text-center mb-8">
-            <img src={logoImage} alt="Logo" className="w-20 h-20 mx-auto mb-4" />
+            <img
+              src={logoImage}
+              alt="Logo"
+              className="w-20 h-20 mx-auto mb-4"
+            />
             <h2 className="text-3xl font-bold bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent mb-2">
               Bolivia en un clic
             </h2>
@@ -156,7 +204,13 @@ export function Register({ onBack, onSwitchToLogin, logoImage, onComplete }: Reg
                   required
                 />
                 <label htmlFor="acceptTerms" className="text-gray-700 text-sm">
-                  Acepto los <a href="#" className="text-orange-600 font-bold hover:underline">términos y condiciones</a>
+                  Acepto los{" "}
+                  <a
+                    href="#"
+                    className="text-orange-600 font-bold hover:underline"
+                  >
+                    términos y condiciones
+                  </a>
                 </label>
               </div>
 
@@ -169,19 +223,30 @@ export function Register({ onBack, onSwitchToLogin, logoImage, onComplete }: Reg
               </Button>
 
               <div className="relative my-6">
-                <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-gray-300"></div></div>
-                <div className="relative flex justify-center text-sm"><span className="px-4 bg-white text-gray-500">O</span></div>
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-gray-300"></div>
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="px-4 bg-white text-gray-500">O</span>
+                </div>
               </div>
 
-              <Button
-                type="button"
-                onClick={handleFacebookLogin}
-                disabled={loading}
-                className="w-full bg-blue-600 text-white py-3 rounded-lg flex items-center justify-center gap-2"
-              >
-                <Facebook className="w-5 h-5" />
-                Continuar con Facebook
-              </Button>
+              <FacebookLogin
+                appId="1486168372912261"
+                onSuccess={handleFacebookRegister} // <--- Llamamos a la función de arriba
+                onFail={(error) => console.log("Facebook Login Failed!", error)}
+                render={({ onClick }) => (
+                  <Button
+                    type="button"
+                    onClick={onClick}
+                    disabled={loading}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg flex items-center justify-center gap-2 transition-all"
+                  >
+                    <Facebook className="w-5 h-5" />
+                    {loading ? "Procesando..." : "Continuar con Facebook"}
+                  </Button>
+                )}
+              />
             </form>
           </div>
 
