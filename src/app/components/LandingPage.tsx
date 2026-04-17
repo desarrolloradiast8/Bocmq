@@ -4,7 +4,7 @@ import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 import { Card } from "@/app/components/ui/card";
 import logoImage from "figma:asset/5bd1390b600814efd35c7824f6d4aa947cc9bd64.png";
-import logoWhite from "figma:asset/ea44a9b543b826e2a7781a569848e9f69ff315f2.png";
+import logoBoc from "@/assets/Logo-boc.png";
 import imagenCrearNegocio from "figma:asset/e2c47da7549e771482222395f9ef937d4ac18b98.png";
 import imagenPublicarPromo from "figma:asset/acc2000219f3b39a2416ebe4d65b679bf1b6f560.png";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
@@ -165,13 +165,13 @@ export function LandingPage({ onLoginClick, onRegisterClick, onCityClick, onActi
           <header className="absolute top-0 left-0 right-0 py-4 px-4 z-50">
             <div className="max-w-7xl mx-auto flex items-center justify-between">
               {/* Logo - Left Side */}
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 -ml-2 sm:-ml-3">
                 <img 
-                  src={logoWhite} 
+                  src={logoBoc} 
                   alt="Bolivia en un clic" 
-                  className="w-10 h-10 object-contain"
+                  className="h-10 sm:h-12 w-auto object-contain"
                 />
-                <span className="font-bold text-base sm:text-lg text-white">
+                <span className="font-bold text-base sm:text-lg text-white tracking-wide">
                   Bolivia en un clic
                 </span>
               </div>
@@ -496,7 +496,7 @@ export function LandingPage({ onLoginClick, onRegisterClick, onCityClick, onActi
                     Segmenta tu audiencia y promociona tus ofertas y eventos en tu ciudad
                   </p>
                   <button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-full shadow-md hover:shadow-lg transition-all transform hover:scale-105 mt-auto">
-                    Descubrir más
+                    Publicar ofertas
                   </button>
                 </div>
               </div>
@@ -518,7 +518,7 @@ export function LandingPage({ onLoginClick, onRegisterClick, onCityClick, onActi
                     Accede a nuestro centro de ayuda con respuestas instantáneas y soporte dedicado
                   </p>
                   <button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-full shadow-md hover:shadow-lg transition-all transform hover:scale-105 mt-auto">
-                    Descubrir más
+                    Ver ayuda
                   </button>
                 </div>
               </div>
@@ -540,7 +540,7 @@ export function LandingPage({ onLoginClick, onRegisterClick, onCityClick, onActi
                     Accede a informes claros que te ayudan a crecer basado en datos reales
                   </p>
                   <button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-full shadow-md hover:shadow-lg transition-all transform hover:scale-105 mt-auto">
-                    Descubrir más
+                    Ver estadísticas
                   </button>
                 </div>
               </div>
@@ -562,7 +562,7 @@ export function LandingPage({ onLoginClick, onRegisterClick, onCityClick, onActi
                     Consejos y tutoriales para crear campañas efectivas y atraer clientes
                   </p>
                   <button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-full shadow-md hover:shadow-lg transition-all transform hover:scale-105 mt-auto">
-                    Descubrir más
+                    Crear anuncio
                   </button>
                 </div>
               </div>

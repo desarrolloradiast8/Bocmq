@@ -3,7 +3,7 @@ import { ArrowLeft, Facebook } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 import Swal from "sweetalert2";
-import logoImage from "figma:asset/5bd1390b600814efd35c7824f6d4aa947cc9bd64.png";
+import logoImage from "@/assets/LogoBOC-color.png";
 import FacebookLogin from "@greatsumini/react-facebook-login";
 import { loginUser, loginSocial } from "@/app/utils/auth";
 import { Register } from "@/app/components/Register";
